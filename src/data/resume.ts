@@ -1,4 +1,5 @@
 import type { TimelineEvent } from "@/types/content";
+import { asset } from "@/lib/asset";
 
 /**
  * The resume timeline. Data-driven so future entries — awards, new roles,
@@ -54,7 +55,7 @@ export const FOCUS =
   "Audio tooling and Music, a guitar pedal and amp designer in the browser.";
 
 export const RESUME_PDF = {
-  href: "/dilara-ozturk-resume.pdf",
+  href: asset("/dilara-ozturk-resume.pdf"),
   /** Printed under the download button. Update when the PDF is replaced. */
   meta: "PDF · updated SEP 2026",
-} as const;
+};

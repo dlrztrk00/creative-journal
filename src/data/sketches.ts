@@ -1,4 +1,5 @@
 import type { Sketch } from "@/types/content";
+import { asset } from "@/lib/asset";
 
 /**
  * The sketchbook's contents, in binding order.
@@ -21,7 +22,7 @@ export function folioFor(index: number): string {
 function sketch(n: number, meta: Partial<Sketch> = {}): Sketch {
   return {
     id: `sketch-${String(n).padStart(2, "0")}`,
-    src: `/sketches/${n}.jpeg`,
+    src: asset(`/sketches/${n}.jpeg`),
     alt: meta.caption ?? `Sketchbook page ${n}`,
     ...meta,
   };

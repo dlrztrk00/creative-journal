@@ -4,6 +4,7 @@ import { Tape } from "@/components/notebook/Tape";
 import { StarOrnament } from "@/components/notebook/Illustrations";
 import { spread } from "@/data/spreads";
 import { SITE } from "@/data/site";
+import { asset } from "@/lib/asset";
 
 const COVER = spread("/");
 
@@ -87,7 +88,7 @@ export default function CoverPage() {
             style={{ marginTop: "calc(8 * var(--nb-u))" }}
           >
             <EditorialImage
-              src="/portrait.jpg"
+              src={asset("/portrait.jpg")}
               alt="Dilara Öztürk"
               ratio="1 / 1"
               sizes="(max-width: 900px) 60vw, 460px"
