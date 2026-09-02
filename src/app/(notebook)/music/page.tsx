@@ -33,7 +33,7 @@ export default function MusicPage() {
         className="flex h-full flex-col"
         style={{ marginTop: "calc(40 * var(--nb-u))" }}
       >
-        <div className="flex items-baseline justify-between">
+        <div className="flex flex-col gap-6 md:flex-row md:items-baseline md:justify-between">
           <h2 className="font-mono text-label tracking-label text-muted">
             COVERS
             <span className="text-faint"> · {COVERS.length} ON THE CHANNEL</span>
@@ -66,9 +66,13 @@ export default function MusicPage() {
         </div>
       </section>
 
+      {/*
+        300 design pixels is a corner of the spread and most of a phone page,
+        where it would sit on top of the covers and the listening line.
+      */}
       <AmpOrnament
         width={300}
-        className="absolute"
+        className="absolute hidden md:block"
         style={{
           right: "calc(-16 * var(--nb-u))",
           bottom: "calc(96 * var(--nb-u))",

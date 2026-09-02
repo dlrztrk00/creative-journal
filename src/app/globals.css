@@ -31,24 +31,24 @@
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 
   /* type ladder, named by role rather than by size */
-  --text-cover: calc(196 * var(--nb-u));
-  --text-title: calc(120 * var(--nb-u));
-  --text-h1: calc(78 * var(--nb-u));
-  --text-h2: calc(66 * var(--nb-u));
-  --text-h3: calc(54 * var(--nb-u));
-  --text-manifesto: calc(40 * var(--nb-u));
-  --text-entry: calc(36 * var(--nb-u));
-  --text-serif-sm: calc(34 * var(--nb-u));
-  --text-contents: calc(32 * var(--nb-u));
-  --text-lede: calc(20 * var(--nb-u));
-  --text-body: calc(19 * var(--nb-u));
-  --text-body-sm: calc(16 * var(--nb-u));
-  --text-label: calc(15 * var(--nb-u));
-  --text-meta: calc(14 * var(--nb-u));
-  --text-caption: calc(13 * var(--nb-u));
-  --text-folio: calc(12 * var(--nb-u));
-  --text-micro: calc(11 * var(--nb-u));
-  --text-stamp: calc(9 * var(--nb-u));
+  --text-cover: calc(var(--size-cover) * var(--nb-u));
+  --text-title: calc(var(--size-title) * var(--nb-u));
+  --text-h1: calc(var(--size-h1) * var(--nb-u));
+  --text-h2: calc(var(--size-h2) * var(--nb-u));
+  --text-h3: calc(var(--size-h3) * var(--nb-u));
+  --text-manifesto: calc(var(--size-manifesto) * var(--nb-u));
+  --text-entry: calc(var(--size-entry) * var(--nb-u));
+  --text-serif-sm: calc(var(--size-serif-sm) * var(--nb-u));
+  --text-contents: calc(var(--size-contents) * var(--nb-u));
+  --text-lede: calc(var(--size-lede) * var(--nb-u));
+  --text-body: calc(var(--size-body) * var(--nb-u));
+  --text-body-sm: calc(var(--size-body-sm) * var(--nb-u));
+  --text-label: calc(var(--size-label) * var(--nb-u));
+  --text-meta: calc(var(--size-meta) * var(--nb-u));
+  --text-caption: calc(var(--size-caption) * var(--nb-u));
+  --text-folio: calc(var(--size-folio) * var(--nb-u));
+  --text-micro: calc(var(--size-micro) * var(--nb-u));
+  --text-stamp: calc(var(--size-stamp) * var(--nb-u));
 
   /* spacing — `p-72` means 72 design pixels */
   --spacing: var(--nb-u);

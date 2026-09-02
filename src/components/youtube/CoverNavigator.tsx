@@ -23,14 +23,13 @@ export function CoverNavigator({ videos }: { videos: Video[] }) {
   return (
     <>
       <div
-        className="flex items-start gap-32"
+        className="flex flex-col gap-20 md:flex-row md:items-start md:gap-32"
         style={{ marginTop: "calc(20 * var(--nb-u))" }}
       >
         {video.thumbnail ? (
           <div
-            className="relative shrink-0"
+            className="relative w-full shrink-0 md:w-[calc(520*var(--nb-u))]"
             style={{
-              width: "calc(520 * var(--nb-u))",
               aspectRatio: "16 / 9",
               border: "var(--rule-w) solid var(--ink)",
             }}
@@ -39,16 +38,17 @@ export function CoverNavigator({ videos }: { videos: Video[] }) {
               src={video.thumbnail}
               alt={video.title}
               fill
-              sizes="520px"
+              sizes="(max-width: 767px) 92vw, 520px"
               className="object-cover"
+              // The lead cover is the page's largest paint; do not lazy-load it.
+              priority={index === 0}
             />
           </div>
         ) : (
           <PlaceholderTile
             label="video embed"
             ratio="16 / 9"
-            className="shrink-0"
-            style={{ width: "calc(520 * var(--nb-u))" }}
+            className="w-full shrink-0 md:w-[calc(520*var(--nb-u))]"
           />
         )}
 

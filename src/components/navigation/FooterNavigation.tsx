@@ -23,15 +23,17 @@ export function FooterNavigation() {
   return (
     <nav
       aria-label="Notebook pages"
-      className="flex items-center justify-between"
+      className="flex items-center justify-between gap-12 whitespace-nowrap"
       style={{
-        padding: "calc(18 * var(--nb-u)) calc(64 * var(--nb-u))",
+        // The horizontal margin follows the page's, so the arms sit under the
+        // text above them rather than in from the edge of a narrow page.
+        padding: "calc(18 * var(--nb-u)) calc(var(--page-pad-x) * var(--nb-u))",
         borderTop: "var(--rule-w) solid var(--ink)",
       }}
     >
       {atFirst || !previous ? (
         <span aria-disabled className={clsx(ARM, "opacity-30")}>
-          ‹ prev
+          ‹<span className="hidden md:inline"> prev</span>
         </span>
       ) : (
         <Link
@@ -39,7 +41,8 @@ export function FooterNavigation() {
           className={clsx(ARM, "hover:-translate-x-4")}
           rel="prev"
         >
-          ‹ prev<span className="sr-only"> — {previous.name}</span>
+          ‹<span className="hidden md:inline"> prev</span>
+          <span className="sr-only"> — {previous.name}</span>
         </Link>
       )}
 
@@ -49,13 +52,15 @@ export function FooterNavigation() {
         aria-haspopup="dialog"
         className="font-mono text-label tracking-label transition-opacity duration-200 hover:opacity-60"
       >
-        {spread?.name ?? "Contents"} <span className="text-accent">—</span>{" "}
+        <span className="hidden md:inline">
+          {spread?.name ?? "Contents"} <span className="text-accent">—</span>{" "}
+        </span>
         {counter} · contents
       </button>
 
       {atLast || !next ? (
         <span aria-disabled className={clsx(ARM, "opacity-30")}>
-          next ›
+          <span className="hidden md:inline">next </span>›
         </span>
       ) : (
         <Link
@@ -63,7 +68,8 @@ export function FooterNavigation() {
           className={clsx(ARM, "hover:translate-x-4")}
           rel="next"
         >
-          next ›<span className="sr-only"> — {next.name}</span>
+          <span className="hidden md:inline">next </span>›
+          <span className="sr-only"> — {next.name}</span>
         </Link>
       )}
     </nav>

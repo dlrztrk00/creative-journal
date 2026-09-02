@@ -53,14 +53,17 @@ export function NotebookPage({
         className,
       )}
       style={
+        // The margins are tokens rather than literals because a portrait phone
+        // page needs far narrower ones — 72 design pixels is 4% of the desktop
+        // canvas and 17% of the phone's. See --page-pad-* in tokens.css.
         padding === "cover"
           ? {
               padding:
-                "calc(36 * var(--nb-u)) calc(64 * var(--nb-u)) 0 calc(64 * var(--nb-u))",
+                "calc((var(--page-pad-y) - 4) * var(--nb-u)) calc((var(--page-pad-x) - 8) * var(--nb-u)) 0",
             }
           : {
               padding:
-                "calc(40 * var(--nb-u)) calc(72 * var(--nb-u)) calc(44 * var(--nb-u)) calc(72 * var(--nb-u))",
+                "calc(var(--page-pad-y) * var(--nb-u)) calc(var(--page-pad-x) * var(--nb-u)) calc((var(--page-pad-y) + 4) * var(--nb-u))",
             }
       }
     >

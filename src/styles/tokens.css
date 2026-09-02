@@ -44,6 +44,52 @@
   --nb-u: calc(var(--nb-w) / var(--nb-design-w));
   --nb-h: calc(var(--nb-design-h) * var(--nb-u));
 
+  /* The interior margin of a printed page, in design pixels. */
+  --page-pad-y: 40;
+  --page-pad-x: 72;
+
+  /*
+   * The type ladder, as multiples of one design pixel.
+   *
+   * Sizes live here rather than in globals.css because the phone needs its own
+   * ladder: on a portrait page every length is a far larger share of the width,
+   * so the display sizes have to come down while the reading sizes stay put.
+   * globals.css only multiplies these by `--nb-u`.
+   */
+  --size-cover: 196;
+  --size-title: 120;
+  --size-h1: 78;
+  --size-h2: 66;
+  --size-h3: 54;
+  --size-manifesto: 40;
+  --size-entry: 36;
+  --size-serif-sm: 34;
+  --size-contents: 32;
+  --size-lede: 20;
+  --size-body: 19;
+  --size-body-sm: 16;
+  --size-label: 15;
+  --size-meta: 14;
+  --size-caption: 13;
+  --size-folio: 12;
+  --size-micro: 11;
+  --size-stamp: 9;
+
+  /* ----------------------------------------------------------- cover plate */
+  /* The portrait is square on the spread and cropped shorter on a phone,
+     where the page is tall but narrow and the issue line sits beneath it. */
+  --cover-portrait-ratio: 1 / 1;
+  --size-cover-star: 190;
+
+  /* ----------------------------------------------------------- sketchbook */
+  /* One leaf of the open spread. Two of these plus the binding have to fit
+     the page, so a portrait canvas needs a much smaller pair — tapping one
+     still opens it full screen. */
+  --sketch-leaf-w: 460;
+  --sketch-leaf-h: 690;
+  --sketch-zoom-w: 700;
+  --sketch-zoom-h: 880;
+
   /* ------------------------------------------------------------- hairlines */
   /* Rules stay crisp: they never scale below a physical pixel. */
   --rule-w: max(1px, calc(1 * var(--nb-u)));
@@ -55,6 +101,57 @@
   --dur-turn: 400ms;
   --dur-page-turn: 280ms; /* sketchbook half-turn, per the prototype */
   --dur-reveal: 700ms;
+}
+
+/*
+ * The phone gets a notebook of its own shape.
+ *
+ * Scaling the 1720x1060 spread down to a 390px screen puts body text at 3.9px
+ * — the page is legible only as a picture of a page. So below this width the
+ * canvas turns portrait: 420x860, which a phone can hold at nearly 1:1, taking
+ * `--nb-u` from 0.20 to about 0.88 and every length with it.
+ *
+ * The reading sizes then land where they should (body ~17px) but the display
+ * sizes do not — 196 design pixels is a masthead on a 1720 canvas and most of
+ * the screen on a 420 one — so the top of the ladder is re-cut here, and the
+ * page margins come in, being a much larger share of a narrow page.
+ */
+@media (max-width: 767px) {
+  :root {
+    --nb-design-w: 420;
+    --nb-design-h: 860;
+    --nb-gutter: 16px;
+
+    --page-pad-y: 26;
+    --page-pad-x: 24;
+
+    --size-cover: 62;
+    --size-title: 46;
+    --size-h1: 40;
+    --size-h2: 33;
+    --size-h3: 28;
+    --size-manifesto: 24;
+    --size-entry: 23;
+    --size-serif-sm: 22;
+    --size-contents: 23;
+    --size-lede: 19;
+    --size-body: 18;
+    --size-body-sm: 16;
+    --size-label: 14;
+    --size-meta: 13;
+    --size-caption: 12;
+    --size-folio: 11;
+    --size-micro: 11;
+    --size-stamp: 9;
+
+    --cover-portrait-ratio: 4 / 3;
+    --size-cover-star: 78;
+
+    --sketch-leaf-w: 182;
+    --sketch-leaf-h: 273;
+    --sketch-zoom-w: 360;
+    --sketch-zoom-h: 452;
+  }
 }
 
 /* Motion is decoration; content is not. */

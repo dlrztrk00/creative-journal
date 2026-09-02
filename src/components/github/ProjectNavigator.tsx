@@ -67,20 +67,16 @@ export function ProjectNavigator({ projects }: { projects: ProjectView[] }) {
   return (
     <>
       <div
-        className="relative grid"
-        style={{
-          gridTemplateColumns: "1fr 1fr",
-          marginTop: "calc(40 * var(--nb-u))",
-          height: "calc(690 * var(--nb-u))",
-        }}
+        className="relative grid grid-cols-1 md:h-[calc(690*var(--nb-u))] md:grid-cols-2"
+        style={{ marginTop: "calc(28 * var(--nb-u))" }}
       >
         <div
           aria-hidden
-          className="absolute bottom-0 top-0 left-1/2 bg-ink"
+          className="absolute bottom-0 top-0 left-1/2 hidden bg-ink md:block"
           style={{ width: "var(--rule-w)" }}
         />
 
-        <div style={{ paddingRight: "calc(64 * var(--nb-u))" }}>
+        <div className="md:pr-64">
           <p className="font-mono text-meta text-accent">* IDEA</p>
 
           <h2
@@ -140,7 +136,12 @@ export function ProjectNavigator({ projects }: { projects: ProjectView[] }) {
           </div>
         </div>
 
-        <div style={{ paddingLeft: "calc(64 * var(--nb-u))" }}>
+        {/*
+          A reserved space says "a sketch belongs here", which is worth a
+          column on the spread and worth nothing on a phone — where it would
+          push the project pager off the page.
+        */}
+        <div className="hidden md:block md:pl-64">
           <figure>
             <PlaceholderTile
               label="sketch — wireframe"

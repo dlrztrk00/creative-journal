@@ -22,9 +22,8 @@ export default function ResumePage() {
   return (
     <NotebookPage spread={SPREAD}>
       <div
-        className="grid gap-80"
+        className="grid grid-cols-1 gap-40 md:grid-cols-2 md:gap-80"
         style={{
-          gridTemplateColumns: "1fr 1fr",
           marginTop: "calc(76 * var(--nb-u))",
         }}
       >
@@ -35,7 +34,9 @@ export default function ResumePage() {
           </div>
         </section>
 
-        <div className="flex flex-col justify-between">
+        {/* The focus line and the download come first on a phone: they are what
+            someone arriving from an application wants, and the timeline is long. */}
+        <div className="order-first flex flex-col justify-between md:order-none">
           <section>
             <h2 className="font-mono text-meta text-muted">FOCUS</h2>
             <p

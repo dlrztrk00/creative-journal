@@ -26,8 +26,14 @@ export function NotebookFrame({
         className="page-shadow relative flex flex-col bg-paper"
         style={{ width: "var(--nb-w)", height: "var(--nb-h)" }}
       >
+        {/*
+          The spread clips its contents so a page turn reads as one sheet
+          sliding over another. A portrait page cannot hold everything a
+          landscape one does, so on a phone the printed surface scrolls
+          vertically inside the binding instead of cutting the page off.
+        */}
         <div
-          className="relative flex-1 overflow-hidden"
+          className="relative flex-1 overflow-x-hidden overflow-y-auto md:overflow-hidden"
           style={{ perspective: "calc(2200 * var(--nb-u))" }}
         >
           {children}

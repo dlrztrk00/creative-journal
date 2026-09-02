@@ -17,11 +17,13 @@ const COVER = spread("/");
 export default function CoverPage() {
   return (
     <NotebookPage spread={COVER} padding="cover" hideFolio cropMarks>
-      <div style={{ marginTop: "calc(96 * var(--nb-u))" }}>
-        <div
-          className="grid items-start gap-64"
-          style={{ gridTemplateColumns: "1fr calc(460 * var(--nb-u))" }}
-        >
+      <div className="mt-40 md:mt-96">
+        {/*
+          Two columns on the spread, one on the phone: the portrait's 460
+          design pixels are wider than the whole portrait canvas, so side by
+          side it would push the masthead off the page.
+        */}
+        <div className="grid grid-cols-1 items-start gap-28 md:grid-cols-[1fr_calc(460*var(--nb-u))] md:gap-64">
           <div>
             <h1
               className="cover-rise font-display text-cover leading-none tracking-tighter text-ink"
@@ -61,7 +63,7 @@ export default function CoverPage() {
             />
 
             <ul
-              className="cover-rise flex items-center gap-22 font-mono text-label tracking-wide text-[#555555]"
+              className="cover-rise flex flex-wrap items-center gap-x-22 gap-y-8 font-mono text-label tracking-wide text-[#555555]"
               style={
                 {
                   "--rise-delay": "360ms",
@@ -90,8 +92,8 @@ export default function CoverPage() {
             <EditorialImage
               src={asset("/portrait.jpg")}
               alt="Dilara Öztürk"
-              ratio="1 / 1"
-              sizes="(max-width: 900px) 60vw, 460px"
+              ratio="var(--cover-portrait-ratio)"
+              sizes="(max-width: 767px) 90vw, 460px"
               priority
             />
             <Tape position="top-left" rotate={-3} />
@@ -101,7 +103,7 @@ export default function CoverPage() {
       </div>
 
       <p
-        className="cover-rise absolute w-fit font-mono text-meta tracking-widest text-ink"
+        className="cover-rise mt-24 w-fit font-mono text-meta tracking-widest text-ink md:absolute md:mt-0"
         style={
           {
             "--rise-delay": "480ms",
@@ -116,10 +118,17 @@ export default function CoverPage() {
         {SITE.issue}
       </p>
 
+      {/*
+        The star crowds a portrait page: the masthead, the plate and the issue
+        line already fill it, and there is no corner left for an ornament.
+      */}
       <StarOrnament
         width={190}
-        className="absolute"
+        className="absolute hidden md:block"
         style={{
+          // Overrides the component's own width: inline style beats a class,
+          // so the responsive value has to arrive this way.
+          width: "calc(var(--size-cover-star) * var(--nb-u))",
           right: "calc(-12 * var(--nb-u))",
           bottom: "calc(36 * var(--nb-u))",
         }}

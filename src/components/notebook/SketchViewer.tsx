@@ -215,8 +215,8 @@ function SketchLeaf({
         side === "left" ? "gutter-shadow-left" : "gutter-shadow-right",
       )}
       style={{
-        width: "calc(460 * var(--nb-u))",
-        height: "calc(690 * var(--nb-u))",
+        width: "calc(var(--sketch-leaf-w) * var(--nb-u))",
+        height: "calc(var(--sketch-leaf-h) * var(--nb-u))",
         ...style,
       }}
     >
@@ -230,7 +230,7 @@ function SketchLeaf({
           src={sketch.src}
           alt={sketch.alt}
           fill
-          sizes="(max-width: 900px) 50vw, 460px"
+          sizes="(max-width: 767px) 45vw, 460px"
           className="object-cover"
           priority={index < 2}
         />
@@ -281,13 +281,16 @@ function ZoomedSketch({
       />
       <div
         className="pointer-events-none relative"
-        style={{ width: "calc(700 * var(--nb-u))", height: "calc(880 * var(--nb-u))" }}
+        style={{
+          width: "calc(var(--sketch-zoom-w) * var(--nb-u))",
+          height: "calc(var(--sketch-zoom-h) * var(--nb-u))",
+        }}
       >
         <Image
           src={sketch.src}
           alt={sketch.alt}
           fill
-          sizes="(max-width: 900px) 90vw, 700px"
+          sizes="(max-width: 767px) 92vw, 700px"
           className="object-contain"
         />
       </div>

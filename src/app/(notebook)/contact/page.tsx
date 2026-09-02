@@ -22,9 +22,10 @@ export default function ContactPage() {
         </h1>
 
         <nav aria-label="Elsewhere">
+          {/* Five outbound links do not sit on one line of a portrait page. */}
           <ul
-            className="flex gap-56"
-            style={{ marginTop: "calc(56 * var(--nb-u))" }}
+            className="flex flex-wrap gap-x-32 gap-y-16 md:gap-x-56"
+            style={{ marginTop: "calc(40 * var(--nb-u))" }}
           >
             {LINKS.map((link) => (
               <li key={link.href}>
