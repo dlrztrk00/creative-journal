@@ -1,5 +1,7 @@
 # Dilara Öztürk — Creative Journal
 
+https://dlrztrk00.github.io/creative-journal/
+
 A digital publication: software, sketches and music kept in one notebook.
 Built to grow for years rather than to be redesigned.
 
