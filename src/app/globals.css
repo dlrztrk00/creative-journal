@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@import "../styles/tokens.css";
+@import "../styles/textures.css";
+
+/**
+ * Tailwind theme.
+ *
+ * Every length resolves to `--nb-u` (one design pixel), so utilities reproduce
+ * the prototype's measurements exactly at any viewport width. Colors and
+ * families are aliases onto the raw tokens in src/styles/tokens.css — that file
+ * is where values change, this one only exposes them.
+ */
+@theme inline {
+  /* palette */
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-oxblood: var(--oxblood);
+  --color-page-dark: var(--page-dark);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+
+  /* families — bound to next/font in the root layout */
+  --font-display: var(--font-instrument-serif), Georgia, serif;
+  --font-body: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  /* type ladder, named by role rather than by size */
+  --text-cover: calc(196 * var(--nb-u));
+  --text-title: calc(120 * var(--nb-u));
+  --text-h1: calc(78 * var(--nb-u));
+  --text-h2: calc(66 * var(--nb-u));
+  --text-h3: calc(54 * var(--nb-u));
+  --text-manifesto: calc(40 * var(--nb-u));
+  --text-entry: calc(36 * var(--nb-u));
+  --text-serif-sm: calc(34 * var(--nb-u));
+  --text-contents: calc(32 * var(--nb-u));
+  --text-lede: calc(20 * var(--nb-u));
+  --text-body: calc(19 * var(--nb-u));
+  --text-body-sm: calc(16 * var(--nb-u));
+  --text-label: calc(15 * var(--nb-u));
+  --text-meta: calc(14 * var(--nb-u));
+  --text-caption: calc(13 * var(--nb-u));
+  --text-folio: calc(12 * var(--nb-u));
+  --text-micro: calc(11 * var(--nb-u));
+  --text-stamp: calc(9 * var(--nb-u));
+
+  /* spacing — `p-72` means 72 design pixels */
+  --spacing: var(--nb-u);
+
+  /* tracking, as used by the mono labels */
+  --tracking-tighter: -0.01em;
+  --tracking-note: 0.04em;
+  --tracking-caption: 0.05em;
+  --tracking-meta: 0.06em;
+  --tracking-label: 0.08em;
+  --tracking-wide: 0.1em;
+  --tracking-widest: 0.12em;
+}
+
+@layer base {
+  html {
+    /* The notebook is a fixed-proportion object; the page never scrolls sideways. */
+    overflow-x: hidden;
+  }
+
+  body {
+    margin: 0;
+    background: var(--oxblood);
+    color: var(--ink);
+    font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* A visible focus ring everywhere, in the publication's own red. */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  button:disabled {
+    cursor: default;
+  }
+}
+
+@layer components {
+  /* The red hairline beneath an inline link. Used site-wide. */
+  .rule-under {
+    border-bottom: var(--rule-w) solid var(--accent);
+    transition: border-color 200ms var(--ease-paper);
+  }
+  .rule-under:hover {
+    border-color: var(--accent-deep);
+  }
+}

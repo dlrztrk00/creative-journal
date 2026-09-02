@@ -1,0 +1,23 @@
+---
+title: Galaxy Shooter
+idea: A 2D space shooter built from scratch with GLUT.
+repo: GalaxyShooterGame
+date: 2025-03-14
+order: 2
+summary: Everything on screen is something I had to draw myself.
+---
+
+No engine, no sprite library, no physics package. GLUT gives you a window and a
+render loop, and everything after that is yours: the ships, the collision
+checks, the timing, the score.
+
+## What I learned
+
+That a game loop is a discipline. Every frame you get one pass to read input,
+advance the world, and draw it — and any state you forget to advance is a bug
+that only shows up when the frame rate changes.
+
+## Notes
+
+The satisfying part was the collision code. It is a few lines of arithmetic, and
+getting it right is the difference between a game and a screensaver.

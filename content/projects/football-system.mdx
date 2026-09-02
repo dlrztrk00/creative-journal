@@ -1,0 +1,19 @@
+---
+title: Football Management System
+idea: Team registration and match simulation, built as a structured tournament engine.
+repo: FootballManagementSystem
+date: 2024-05-20
+order: 4
+summary: A tournament is a state machine wearing a sport.
+---
+
+Teams register, fixtures generate, matches simulate, the table updates. Put like
+that it sounds small, but the interesting part is that every one of those steps
+has to be reversible — someone always registers a team wrong.
+
+## Structure
+
+The engine keeps the tournament and the simulation apart. The tournament knows
+about rounds, fixtures and standings; the simulation knows about a single match
+and nothing else. Keeping that line clean meant the scoring rules could change
+without touching the bracket logic.

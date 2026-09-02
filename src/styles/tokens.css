@@ -1,0 +1,67 @@
+/**
+ * Design tokens — the single source of truth for the publication's visual language.
+ *
+ * Every value here is transcribed from the design prototype. Nothing is
+ * invented.
+ * If a value needs to change, it changes here and nowhere else.
+ *
+ * These are raw tokens. They are exposed to Tailwind as utilities in globals.css.
+ */
+
+:root {
+  /* ---------------------------------------------------------------- palette */
+  --paper: #f6f3ee; /* the page */
+  --ink: #111111; /* primary text, hairlines */
+  --accent: #b32025; /* the red: section labels, annotations, rules */
+  --accent-deep: #8a1117; /* accent, hovered */
+  --oxblood: #7a1015; /* the field the notebook sits on */
+  --page-dark: #2c2b2b; /* the sketchbook's black page */
+  --muted: #777777; /* secondary text */
+  --faint: #a39d8d; /* folios, captions, metadata */
+  --rule: #d9d4c8; /* hairline dividers inside a page */
+  --rule-strong: #b8b2a2; /* stronger hairline, placeholder borders */
+  --texture-a: #ede9e0; /* paper-texture stripe, light */
+  --texture-b: #e6e1d6; /* paper-texture stripe, dark */
+  --tape: rgb(246 243 238 / 0.62); /* washi tape over a photo */
+
+  /* ------------------------------------------------------------ the canvas */
+  /*
+   * The design is authored on a 1720 x 1060 page. Rather than transform-scaling
+   * that canvas (which produces unselectable, unzoomable text), we derive a
+   * single unit `--nb-u` equal to one *design pixel* in real CSS pixels, and
+   * express every length in terms of it. The result is proportionally identical
+   * to the design at any viewport width, but every glyph is still real text.
+   */
+  --nb-design-w: 1720;
+  --nb-design-h: 1060;
+  --nb-gutter: 40px;
+
+  --nb-w: min(
+    calc(var(--nb-design-w) * 1px),
+    calc(100vw - var(--nb-gutter)),
+    calc((100svh - var(--nb-gutter)) * (var(--nb-design-w) / var(--nb-design-h)))
+  );
+  --nb-u: calc(var(--nb-w) / var(--nb-design-w));
+  --nb-h: calc(var(--nb-design-h) * var(--nb-u));
+
+  /* ------------------------------------------------------------- hairlines */
+  /* Rules stay crisp: they never scale below a physical pixel. */
+  --rule-w: max(1px, calc(1 * var(--nb-u)));
+  --rule-w-strong: max(1px, calc(1.5 * var(--nb-u)));
+
+  /* --------------------------------------------------------------- motion */
+  /* Paper easing: a page slides and settles. Never bounces. */
+  --ease-paper: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-turn: 400ms;
+  --dur-page-turn: 280ms; /* sketchbook half-turn, per the prototype */
+  --dur-reveal: 700ms;
+}
+
+/* Motion is decoration; content is not. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-turn: 1ms;
+    --dur-page-turn: 1ms;
+    --dur-reveal: 1ms;
+  }
+}

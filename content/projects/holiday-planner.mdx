@@ -1,0 +1,25 @@
+---
+title: Holiday Planner
+idea: A trip-planning tool, sketched first on paper, then in code.
+repo: HolidayPlanner
+date: 2024-11-02
+order: 3
+summary: Planning a trip is mostly deciding what not to do.
+---
+
+The first version of this was two pages of a sketchbook: a week laid out in
+columns, each day a stack of things I might do, most of them crossed out by the
+time I actually left.
+
+## What it does
+
+You add destinations, give each one a rough duration, and the planner lays them
+out across the days you have. Everything is editable in place — the point is to
+keep rearranging until the shape looks right, the same way the paper version
+worked.
+
+## What I'd change
+
+The data model assumes a trip is a flat list of days. Real trips nest: a week in
+Finland contains three days in Helsinki that contain an afternoon somewhere. The
+next version should let a day contain a plan of its own.

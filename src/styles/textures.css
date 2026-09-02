@@ -1,0 +1,79 @@
+/**
+ * Physical-object recipes: paper stock, tape, shadows, page entrances.
+ *
+ * These exist so that no component reinvents the publication's materials.
+ * Each is a class, not a pile of utilities, because it describes a *thing*.
+ */
+
+/* The ruled paper stock used behind every image placeholder in the design. */
+.paper-stock {
+  background: repeating-linear-gradient(
+    115deg,
+    var(--texture-a),
+    var(--texture-a) calc(10 * var(--nb-u)),
+    var(--texture-b) calc(10 * var(--nb-u)),
+    var(--texture-b) calc(11 * var(--nb-u))
+  );
+}
+
+/* A page lifted off the field it rests on. */
+.page-shadow {
+  box-shadow: 0 calc(30 * var(--nb-u)) calc(80 * var(--nb-u)) rgb(0 0 0 / 0.18);
+}
+
+/* The sketchbook's open spread sits deeper. */
+.spread-shadow {
+  box-shadow: 0 calc(30 * var(--nb-u)) calc(70 * var(--nb-u)) rgb(0 0 0 / 0.55);
+}
+
+/* Gutter shading where the two sketchbook pages meet the binding. */
+.gutter-shadow-left {
+  box-shadow:
+    inset calc(-14 * var(--nb-u)) 0 calc(24 * var(--nb-u)) calc(-14 * var(--nb-u))
+    rgb(0 0 0 / 0.7);
+}
+.gutter-shadow-right {
+  box-shadow:
+    inset calc(14 * var(--nb-u)) 0 calc(24 * var(--nb-u)) calc(-14 * var(--nb-u))
+    rgb(0 0 0 / 0.7);
+}
+
+/* The binding itself. */
+.spread-binding {
+  background: linear-gradient(
+    90deg,
+    rgb(0 0 0 / 0.6),
+    rgb(255 255 255 / 0.08),
+    rgb(0 0 0 / 0.6)
+  );
+}
+
+/* A strip of washi tape. Rotation and placement are set by the component. */
+.tape-strip {
+  background: var(--tape);
+  border: var(--rule-w) solid rgb(0 0 0 / 0.06);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
+}
+
+/* Entrance for the cover's stacked lines. Delay is set per instance. */
+@keyframes cover-rise {
+  from {
+    opacity: 0;
+    transform: translateY(calc(24 * var(--nb-u)));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cover-rise {
+  animation: cover-rise var(--dur-reveal) var(--ease-paper)
+    var(--rise-delay, 0ms) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover-rise {
+    animation: none;
+  }
+}
