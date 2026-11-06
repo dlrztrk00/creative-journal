@@ -9,6 +9,7 @@ import {
 import { getResolvedProjects } from "@/lib/projects";
 import { relativeTime } from "@/lib/format";
 import { spread } from "@/data/spreads";
+import { PROJECT_IMAGES } from "@/data/project-images";
 
 const SPREAD = spread("/projects");
 
@@ -41,6 +42,7 @@ export default async function ProjectsPage() {
         ? relativeTime(project.repo.pushedAt)
         : null,
     hasWriteUp: project.body !== null,
+    image: PROJECT_IMAGES[project.slug] ?? null,
   }));
 
   const latest = views.find((view) => view.lastCommit)?.lastCommit;

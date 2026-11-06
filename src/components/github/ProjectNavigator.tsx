@@ -8,6 +8,8 @@ import { PlaceholderTile } from "@/components/notebook/PlaceholderTile";
 import { Tape } from "@/components/notebook/Tape";
 import { FigureCaption } from "@/components/editorial/FigureCaption";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { EditorialImage } from "@/components/editorial/EditorialImage";
+import type { ProjectImage } from "@/data/project-images";
 
 /**
  * One project as the spread needs it: MDX narrative merged with whatever
@@ -25,6 +27,8 @@ export interface ProjectView {
   lastCommit: string | null;
   /** Whether an MDX write-up exists, so the page only offers a real link. */
   hasWriteUp: boolean;
+  /** A screenshot for the plate; the placeholder stands in when absent. */
+  image: ProjectImage | null;
 }
 
 /**
@@ -142,19 +146,32 @@ export function ProjectNavigator({ projects }: { projects: ProjectView[] }) {
           push the project pager off the page.
         */}
         <div className="hidden md:block md:pl-64">
-          <figure>
-            <PlaceholderTile
-              label="sketch — wireframe"
-              ratio="4 / 5"
-              boxed
-              style={{ maxHeight: "calc(540 * var(--nb-u))" }}
+          {project.image ? (
+            <EditorialImage
+              src={project.image.src}
+              alt={project.image.alt}
+              ratio={project.image.ratio}
+              caption={project.image.caption}
+              sizes="(max-width: 900px) 90vw, 45vw"
+              className="mx-auto"
             >
               <Tape position="top-center" rotate={-2} width={76} height={22} />
-            </PlaceholderTile>
-            <FigureCaption crossReference="cf. sketchbook, pg. 014">
-              fig. 01 — concept sketch
-            </FigureCaption>
-          </figure>
+            </EditorialImage>
+          ) : (
+            <figure>
+              <PlaceholderTile
+                label="sketch — wireframe"
+                ratio="4 / 5"
+                boxed
+                style={{ maxHeight: "calc(540 * var(--nb-u))" }}
+              >
+                <Tape position="top-center" rotate={-2} width={76} height={22} />
+              </PlaceholderTile>
+              <FigureCaption crossReference="cf. sketchbook, pg. 014">
+                fig. 01 — concept sketch
+              </FigureCaption>
+            </figure>
+          )}
         </div>
       </div>
 
